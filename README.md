@@ -42,13 +42,13 @@ If you would like to contribute then you are welcome to propose changes by uploa
 
 1. [Fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this Github repository
 2. [Create a branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository) in your forked repository
-3. Upload (also referred to as ["push"](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository)) your proposed alterations to the branch
+3. Upload (also referred to as ["push"](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository)) your proposed alterations to the branch under the "submitted_changes" directory
 4. Open a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests) and include the following information in the PR description:
   i. The aim of your changes
   ii. Details of what these changes are
   iii. Any limitations or further development needed
 
-A member of the PROMICE team will review your submission once a pull request is open. If/when your pull request is accepted then you will be listed as a contributor to the dataset.
+A member of the PROMICE team will review your submission once a pull request is open. If/when your pull request is accepted then your changes will be merged and you will be listed as a contributor to the dataset.
 
 
 ## Dataset readme
