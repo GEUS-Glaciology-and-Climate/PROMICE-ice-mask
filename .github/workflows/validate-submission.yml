@@ -1,0 +1,39 @@
+name: Validate Submission
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+          
+      - name: Get list of new files in submitted_changes/
+        id: get_files
+        run: |
+          NEW_FILES=$(git diff --name-status origin/${{ github.base_ref }} | awk '$1 == "A" && $2 ~ /^submitted_changes\// {print $2}')
+          echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
+
+      - name: Check file size and format
+        run: |
+          IFS=$'\n'
+          for file in ${{ steps.get_files.outputs.new_files }}; do
+            if [[ ! "$file" == *.gpkg ]]; then
+              echo "❌ Error: $file is not a .gpkg file"
+              exit 1
+            fi
+
+            SIZE=$(stat -c %s "$file")
+            MAX_SIZE=$((10 * 1024 * 1024))
+            if (( SIZE > MAX_SIZE )); then
+              echo "❌ Error: $file exceeds 10MB (size: $SIZE bytes)"
+              exit 1
+            fi
+          done
+        shell: bash
