@@ -14,27 +14,27 @@ Issues can be raised in this repository [here](https://github.com/GEUS-Glaciolog
 - The source and version number of the dataset
 - The location of the data issue (where applicable)
 
-And make use of the issue labels to ensure that data issues are categorised accordingly:
-
-**Example label category 1**
-
-![][~comments]
-![][~enhancement]
-
-[~comments]: https://img.shields.io/badge/-comments-006b75.svg
-[~enhancement]: https://img.shields.io/badge/-enhancement-84b6eb.svg
-
-**Example label category 2**
-
-![][~comments]
-![][~enhancement]
-
-[~comments]: https://img.shields.io/badge/-comments-006b75.svg
-[~enhancement]: https://img.shields.io/badge/-enhancement-84b6eb.svg
-
 Once posted, someone from the PROMICE team will respond to the issue with a clear plan of action. It may be the case that further information is needed, in which case, please respond in a timely manner.
 
 See [here](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/creating-an-issue) for a thorough guide on creating issues in a Github repository.
+
+#### Issue labels
+Make use of the issue labels to ensure that data issues are categorised accordingly:
+
+**Issue Type**
+
+https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/invalid-metadata
+https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/invalid-vertices
+https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/new-vertices-needed
+
+**Region**
+
+https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/SW
+https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/SE
+https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/CE
+https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/NE
+https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/NW
+https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/CW
 
 
 ### How to contribute
