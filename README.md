@@ -21,18 +21,18 @@ Make use of the issue labels to ensure that data issues are categorised accordin
 
 **Issue Type**
 
-https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/invalid-metadata
-https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/invalid-vertices
-https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/new-vertices-needed
+[![invalid-metadata](https://img.shields.io/badge/invalid--metadata-7636d2?style=flat&logo=github)](https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/invalid-metadata)
+[![invalid-vertices](https://img.shields.io/badge/invalid--vertices-f073b9?style=flat&logo=github)](https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/invalid-vertices)
+[![new-vertices-needed](https://img.shields.io/badge/new--vertices--needed-60f29c?style=flat&logo=github)](https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/new-vertices-needed)
 
 **Region**
 
-https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/SW
-https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/SE
-https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/CE
-https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/NE
-https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/NW
-https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/CW
+[![SW](https://img.shields.io/badge/sw-50dfd7?style=flat&logo=github)](https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/SW)
+[![SE](https://img.shields.io/badge/se-2e471e?style=flat&logo=github)](https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/SE)
+[![CE](https://img.shields.io/badge/ce-edc2e0?style=flat&logo=github)](https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/CE)
+[![NE](https://img.shields.io/badge/ne-8adffd?style=flat&logo=github)](https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/NE)
+[![NW](https://img.shields.io/badge/nw-b05c4c?style=flat&logo=github)](https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/NW)
+[![CW](https://img.shields.io/badge/cw-ab524c?style=flat&logo=github)](https://github.com/GEUS-Glaciology-and-Climate/PROMICE-ice-mask/labels/CW)
 
 ### How to contribute
 If you would like to contribute then you are welcome to propose changes by uploading discrete alterations to the datasets. You will need to be registered as a Github user in order to do so:
