@@ -62,7 +62,7 @@ The PROMICE-2022 ice mask is an updated outline of the contiguous ice masses of 
 - ***09-PROMICE-2022-IceMask-Nunatak-basins-polygon.gpkg***: Ice mask of the Greenland Ice Sheet from August 2022 with the nunataks in its interior cut out, divided into drainage basins following Mouginot and Rignot 2019, provided as a polygon vector feature
 - ***10-PROMICE-2022-IceMask-raster-150m.gpkg*** Ice Mask of the Greenland Ice Sheet from August 2022, provided as raster file with a cell size of 150x150m
 - ***11-PROMICE-2022-DOY-polygon.gpkg***: Polygon vector feature of the Sentinel-2 mosaic extent, annotated with the DOY (day of year) in 2022 on which the corresponding Sentinel-2 imagery was acquired and used for the delianetion of the PROMICE-2022 ice mask
-- - ***README-PROMICE-2022-IceMask.md***: This dataset readme file
+- ***README-PROMICE-2022-IceMask.md***: This dataset readme file
 
 ### Data format
 The ice mask is presented as a vector feature in GeoPackage format (.gpkg), with coordinates provided in the WGS NSIDC Sea Ice Polar Stereographic North (EPSG:3413) projected coordinate system.
