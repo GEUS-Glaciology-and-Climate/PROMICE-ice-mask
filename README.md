@@ -1,6 +1,6 @@
-# PROMICE-2022 Ice Mask: A High-Resolution Outline of the Greenland Ice Sheet from August 2022
+# PROMICE-2022 Ice Mask
 
-This repository is a forum for data issues related to the [PROMICE-2022 Ice Mask](https://dataverse.geus.dk/dataverse/GlacierTermini). The PROMICE-2022 Ice Mask is an updated outline of the Greenland Ice Sheet, as part of [PROMICE](https://promice.org) (Programme for Monitoring of the Greenland Ice Sheet) at the [Geological Survey of Denmark and Greenland](https://geus.dk) (GEUS).
+This repository is a forum for data issues related to the [PROMICE-2022 Ice Mask](https://dataverse.geus.dk/dataverse/promice-ice-mask). The PROMICE-2022 Ice Mask is an updated outline of the Greenland Ice Sheet, as part of [PROMICE](https://promice.org) (Programme for Monitoring of the Greenland Ice Sheet) at the [Geological Survey of Denmark and Greenland](https://geus.dk) (GEUS).
 
 
 ## See an issue with the dataset?
@@ -50,29 +50,43 @@ If you would like to contribute then you are welcome to propose changes by uploa
 
 A member of the PROMICE team will review your submission once a pull request is open. If/when your pull request is accepted then your changes will be merged and you will be listed as a contributor to the dataset.
 
-
 ## Dataset readme
 ### Dataset contents
-The PROMICE-2022 ice mask is an updated outline of the contiguous ice masses of the Greenland Ice Sheet. The dataset is derived from a mosaic of Sentinel-2 satellite images at 10 m resolution, compiled using the SentinelHub Cloud Processing API. The mosaic was generated using the most recent valid pixels from August 2022, ensuring high temporal and geometric accuracy. 
+The PROMICE-2022 ice mask is an updated outline of the contiguous ice masses of the Greenland Ice Sheet. The dataset is derived from a mosaic of Sentinel-2 satellite images at 10 m resolution, compiled using the SentinelHub Cloud Processing API. The mosaic was generated using the most recent valid pixels from August 2022, ensuring high temporal and geometric accuracy. Manual editing and mapping was conducted at a scale of around 1:25,000, after which quality assessment was performed independently of the mapping operator, before finally being merged into one coherent dataset. The manual mapping process is further supported by data from the Danish Agency for Climate Data (KDS), including mosaics of Sentinel-2 and SPOT 6/7 imagery, as well as recent vector data from topographical mapping. Please see Luetzenburg et al. (In Prep) for full details on the processing workflow and quality assessment. The following files are included in this dataset:
 
-Manual editing and mapping was conducted at a scale of around 1:25,000, after which quality assessment was performed independently of the mapping operator, before finally being merged into one coherent dataset. The manual mapping process is further supported by data from the Danish Agency for Climate Data (KDS), including mosaics of Sentinel-2 and SPOT 6/7 imagery, as well as recent vector data from topographical mapping. Please see Luetzenburg et al. (In Prep) for full details on the processing workflow and quality assessment.
-
+- ***README-PROMICE-2022-IceMask.md***: This dataset readme file
+- ***01-PROMICE-2022-IceMask-line.gpkg***: Outline of the Greenland Ice Sheet from August 2022, provided as line vector feature
+- ***02-PROMICE-2022-IceMask-polygon.gpkg***: Outline of the Greenland Ice Sheet from August 2022, provided as polygon vector feature
+- ***03-PROMICE-2022-Nunatak-line.gpkg***: Outlines of the nunataks within the Greenland Ice Sheet from August 2022, provided as line vector features
+- ***04-PROMICE-2022-Nunatak-polygon.gpkg***: Outlines of the nunataks within the Greenland Ice sheet from August 2022, provided as polygon vector features
+- ***05-PROMICE-2022-IceMask-Nunatak-line.gpkg***: Outlines of the Greenland Ice Sheet and the nunataks within from August 2022, provided as line vector features
+- ***06-PROMICE-2022-IceMask-Nunatak-polygon.gpkg***: Outline of the Greenland Ice Sheet from August 2022 with the nunataks in its interior cut out, provided as a polygon vector feature
+- ***07-PROMICE-2022-IceMask-CL1-polygon.gpkg***: Outline of the Greenland Ice Sheet from August 2022 with the nunataks in its interior cut out, and glaciers with connectivity level CL1 delineated following Rastner et al. 2012, provided as a polygon vector feature
+- ***08-PROMICE-2022-IceMask-basins-polygon.gpkg***: Ice mask of the Greenland Ice Sheet from August 2022, divided into drainage basins following Mouginot and Rignot 2019, provided as a polygon vector feature
+- ***09-PROMICE-2022-IceMask-Nunatak-basins-polygon.gpkg***: Ice mask of the Greenland Ice Sheet from August 2022 with the nunataks in its interior cut out, divided into drainage basins following Mouginot and Rignot 2019, provided as a polygon vector feature
+- ***10-PROMICE-2022-IceMask-raster-150m.gpkg*** Ice Mask of the Greenland Ice Sheet from August 2022, provided as raster file with a cell size of 150x150m
+- ***11-PROMICE-2022-DOY-polygon.gpkg***: Polygon vector feature of the Sentinel-2 mosaic extent, annotated with the DOY (day of year) in 2022 on which the corresponding Sentinel-2 imagery was acquired and used for the delianetion of the PROMICE-2022 ice mask
 
 ### Data format
 The ice mask is presented as a vector feature in GeoPackage format (.gpkg), with coordinates provided in the WGS NSIDC Sea Ice Polar Stereographic North (EPSG:3413) projected coordinate system.
 
-
 ### Metadata
-The ice mask file contains the following metadata information:
+The following metadata information is included in the corresponding files:
 
 | Variable name       | Description         | Format | 
 |---------------------|---------------------|---------|
-| `example1_variable`  	| Example1 description   | Example1 format  |
-| `example2_variable`  	| Example2 description   | Example2 format  |
+| `id`  	| Identifying number for each feature    | Integer  |
+| `type`  	| Ice sheet outline or nunatak (outline, nunatak)    | String  |
+| `area_sqkm`  	| Areal extent of polygon in square km| Float  |
+| `length_km`  	| Length of line or polygon perimeter in km    | Float  |
+| `termini`  	| Land or marine terminating ice sheet margin (land, marine)    | String  |
+| `connectivity`  	| Connectivity level as defined by Rastner et al. 2012 (CL1)    | String  |
+| `subregion`  	| Region as defined by Mouginot and Rignot (2019) (NW, NO, NE, CE, SE, SW, CW)    | String  |
+| `DOY`  	| Day of year in 2022 on which the corresponding Sentinel-2 imagery was acquired    | Integer  |
 
 
 ### Using the dataset
-The dataset is openly available on the [GEUS Dataverse](https://dataverse.geus.dk/dataverse/GlacierTermini) for downloading, distributed under a [CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/). 
+The dataset is openly available on the [GEUS Dataverse](https://dataverse.geus.dk/dataverse/promice-ice-mask) for downloading, distributed under a [CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/). 
 
 The dataset can be opened in spatial mapping and visualisation applications such as [QGIS](https://qgis.org/). It can also be opened and analysed in Python using spatial packages such as [geopandas](https://geopandas.org/en/stable/), like so:
 
