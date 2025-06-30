@@ -88,7 +88,7 @@ The dataset can be opened in spatial mapping and visualisation applications such
 
 ```python
 import geopandas as gpd
-infile = "promice-2022-ice-mask.gpkg"
+infile = "01-PROMICE-2022-IceMask-line.gpkg"
 gdf = gpd.read_file(infile)
 ```
 
@@ -100,6 +100,6 @@ If the dataset is presented or used to support results of any kind then we ask t
 
 And include the following statement in the acknowledgements:
 
-"Ice mask data provided by the Programme for Monitoring of the Greenland Ice Sheet (PROMICE) at the Geological Survey of Denmark and Greenland (GEUS)."
+*"Ice mask data provided by the Programme for Monitoring of the Greenland Ice Sheet (PROMICE) at the Geological Survey of Denmark and Greenland (GEUS)."*
 
 If the dataset is crucial to the main findings, we encourage users to reach out to the authorship team as this will likely improve the quality of the work that uses this product.
