@@ -74,8 +74,10 @@ The following metadata information is included in the corresponding files:
 |---------------------|---------------------|---------|
 | `id`  	| Identifying number for each feature    | Integer  |
 | `type`  	| Ice sheet outline or nunatak (outline, nunatak)    | String  |
-| `area_sqkm`  	| Areal extent of polygon in square km| Float  |
-| `length_km`  	| Length of line or polygon perimeter in km    | Float  |
+| `area_planar_sqkm`  	| Planar areal extent of polygon in square km| Float  |
+| `area_geodesic_sqkm`  	| Geodesic (WGS 84) areal extent of polygon in square km| Float  |
+| `length_planar_km`  	| Planar length of line or polygon perimeter in km    | Float  |
+| `length_geodesic_km`  	| Geodesic (WGS 84) length of line or polygon perimeter in km    | Float  |
 | `termini`  	| Land or marine terminating ice sheet margin (land, marine)    | String  |
 | `connectivity`  	| Connectivity level as defined by Rastner et al. 2012 (CL1)    | String  |
 | `subregion`  	| Region as defined by Mouginot and Rignot (2019) (NW, NO, NE, CE, SE, SW, CW)    | String  |
