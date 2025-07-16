@@ -1,0 +1,270 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Apr 26 12:05:25 2022
+
+@author: njk
+"""
+from osgeo import gdal
+from ICE_outline import(
+    folder_mgmt,
+    MakeList4VRT,
+    VRT2GTiff,
+    makeRGBtiff
+)
+import os, sys
+import numpy as np
+import matplotlib as plt
+from sentinelhub import SHConfig
+import datetime
+from rasterio.io import MemoryFile
+from rasterio.features import shapes
+from sentinelhub import (
+    MimeType,
+    CRS,
+    BBox,
+    SentinelHubRequest,
+    BBoxSplitter,\
+    DataCollection,
+    bbox_to_dimensions,
+    read_data,
+    DownloadRequest,
+    MosaickingOrder, # Comes with pip install sentinelhub==3.5.2
+)
+# import geopandas as gp
+from shapely.geometry import shape
+# from utils import plot_image
+# import json
+
+
+# ----------------------- Parameters & Variables -----------------------------
+
+#year = 2022
+epsg = 4326
+#input_filename = 'ctrl_pgon_sq_64_79.json'
+#year = 2022
+input_filename = sys.argv[1]
+year = sys.argv[2]
+
+
+bbox_row = 15
+bbox_col = 11
+
+resolution = 10
+
+date = ("{}-08-01".format(year), "{}-08-31".format(year))
+
+
+ctrl_pgon_str = input_filename[0:-5] # Gets name of file w/o extension
+
+# Function 'folder_mgmt' checks if the required folder structure is in place
+# and if not it creates it.
+#  Root is location of python script execution.
+#   CTRL_PGON_0: holds the downloaded raster filed from the S2 request
+#   Data: where the multispectral result is stored as Geotiff.
+#   RGB: 8-bit per band, 3-band, true colour of bands 4,3,2.
+#   Classification: location of vecorized classification result.
+
+    # input_file = os.path.join('./ctrl_pgon/', input_filename)
+    
+folder_mgmt(year, input_filename, ctrl_pgon_str)
+
+
+# Make the PathPgon folder the data_folder where the response files
+# will be dowloaded to.
+
+data_folder = os.path.join('./results/', str(year), 'raw_data', ctrl_pgon_str)
+
+
+#-----------------   Configure SentinelHub connection client   ----------------
+
+config = SHConfig()
+config.instance_id = '<<deleted>>' #Instance ID needed (User ID)
+config.sh_client_id = '<<deleted>>' # OAuth Client ID needed
+config.sh_client_secret = '<<deleted>>' #Client secret needed
+config.save()  #Save client login so not needed again   
+
+
+if not config.sh_client_id or not config.sh_client_secret:
+    print("Warning! To use Process API, please provide the credentials (OAuth client ID and client secret).")
+
+
+#----------------- Evalscript ------------------
+
+evalscript_classification = """
+//VERSION=3
+function setup() {
+  return {
+    input: [{
+      bands: [
+        "B04", // red
+        "B03", // green
+        "B02", // blue
+        "B08", // nir
+        "B11", // swir
+//        "B12",
+        "SCL", // pixel classification
+        "CLM" // sen2cloudless mask
+      ],
+      units: "DN"
+    }],
+    output: [
+      {
+        id: "default",
+        bands: 6,
+        sampleType: SampleType.UINT16
+      }
+    ],
+    mosaicking: "ORBIT"
+  };
+}
+function filterScenes (scenes, inputMetadata) {
+    return scenes.filter(function (scene) {
+       return scene.date.getTime()>=(inputMetadata.to.getTime()-2*31*24*3600*1000);
+    });
+}
+// marks pixels marked as clouds/shadows as invalid
+function validate(samples) {
+  var scl = samples.SCL;
+  var clm = samples.CLM;
+  if (scl === 3) { // SC_CLOUD_SHADOW
+    return false;
+  } else if (clm === 1) { // CLM = cloud
+    return false;
+  } else if (scl === 9) { // SC_CLOUD_HIGH_PROBA
+    return false;
+  } else if (scl === 8) { // SC_CLOUD_MEDIUM_PROBA
+    return false;
+  } else if (scl === 7) { // SC_CLOUD_LOW_PROBA
+    // return false;
+  } else if (scl === 10) { // SC_THIN_CIRRUS
+    return false;
+//  } else if (scl === 11) { // SC_SNOW_ICE
+//    return false;
+  } else if (scl === 1) { // SC_SATURATED_DEFECTIVE
+    return false;
+  } else if (scl === 2) { // SC_DARK_FEATURE_SHADOW
+    return false;
+  }
+  return true;
+}
+function evaluatePixel(samples, scenes) {
+  var clo_b02 = [];
+  var clo_b03 = [];
+  var clo_b04 = [];
+  var clo_b08 = [];
+  var clo_b11 = [];
+  var dayOfYear = []
+//  var clo_b12 = [];
+  var a = 0;
+  for (var i = 0; i < samples.length; i++) {
+    var sample = samples[i];
+    
+    var sceneDate = scenes[i].date;
+	var start = new Date(sceneDate.getFullYear(), 0, 0);	
+	var diff = sceneDate - start;
+	var oneDay = 1000 * 60 * 60 * 24;
+	var day = Math.floor(diff / oneDay);
+    
+    if (sample.B02 > 0 && sample.B03 > 0 && sample.B04 > 0 && sample.B08 > 0 && sample.B11 > 0) {
+      var isValid = validate(sample);
+      if (isValid) {
+        clo_b02[a] = sample.B02;
+        clo_b03[a] = sample.B03;
+        clo_b04[a] = sample.B04;
+        clo_b08[a] = sample.B08;
+        clo_b11[a] = sample.B11;
+        //clo_b12[a] = sample.B12;
+        dayOfYear[a] = day;
+        a = a + 1;
+      }
+    }
+  }
+  b04Value = clo_b04[0]; // take first in sequence of valid pixels (most recent)
+  b03Value = clo_b03[0];
+  b02Value = clo_b02[0];
+  b08Value = clo_b08[0];
+  b11Value = clo_b11[0];
+  // s2Value = clo_b12[0];
+  dayValue = dayOfYear[0];
+  return {
+    default: [b02Value, b03Value, b04Value, b08Value, b11Value, dayValue]
+  };
+}
+
+"""
+#----------------- functions -------------------------
+
+# None
+
+
+
+#------------------------    Box Splitting -  --------------------------------
+# Load mask and split into processing chunks
+input_file = os.path.join('./ctrl_pgon/', input_filename)
+
+geo_json = read_data(input_file)
+gl_area = shape(geo_json["features"][0]["geometry"])
+
+bbox_splitter = BBoxSplitter([gl_area], CRS(epsg), (bbox_col, bbox_row), reduce_bbox_sizes=True)  
+
+geometry_list = bbox_splitter.get_geometry_list()
+
+#------
+print('Area bounding box: {}'.format(bbox_splitter.get_area_bbox().__repr__()))
+print(f'Number of bboxes: {len(geometry_list)}')
+
+
+#Iterate through bbox list
+count=1
+for g in geometry_list:
+    
+    #Construct bbox
+    bbox_obj = BBox(bbox=g, crs=CRS(epsg))
+    bbox_obj = bbox_obj.buffer(1)
+    bbox_size = bbox_to_dimensions(bbox_obj, resolution=resolution)
+    print(f'\nBbox {count} at {resolution} m resolution, {bbox_size} pixels') 
+
+    #Construct SentinelHub request
+    request_data = SentinelHubRequest(
+        evalscript=evalscript_classification,
+        input_data=[
+            SentinelHubRequest.input_data(
+              data_collection=DataCollection.SENTINEL2_L2A,
+              time_interval=date,
+              mosaicking_order='leastCC',
+              #mosaicking_order=MosaickingOrder.LEAST_CC,
+              downsampling='BILINEAR',
+            )
+        ],
+      responses=[SentinelHubRequest.output_response("default", MimeType.TIFF)],
+      bbox=bbox_obj,
+      size=bbox_size,
+      config=config,
+      data_folder = data_folder,
+  )
+    count=count+1
+    request_data_arrays = request_data.get_data(save_data=True)
+    instance_folder = os.listdir(request_data.data_folder)
+    instance_str = ''.join(instance_folder)
+
+# ----------------- Post processing of response files ----------------
+
+# Make a virtual raster from the response files, then mosaic into multiband 
+# geotiff and also make 8-bit RGB from bands 4,3,2. Classify and vectorize.
+# Vectorize time stamp (Day Of Year)
+
+# Create VRT_list with paths to requested tiff files for Virtual Raster
+VRT_list = MakeList4VRT(data_folder)
+
+# Build Virtual raster and save mosaick as GeoTiff
+new_vrt = gdal.BuildVRT('new_vrt.vrt', VRT_list)
+VRT2GTiff(new_vrt, year, ctrl_pgon_str)
+
+# Make RGB (true color)
+makeRGBtiff(ctrl_pgon_str, year)
+
+
+
+
+
