@@ -51,6 +51,7 @@ A member of the PROMICE team will review your submission once a pull request is 
 ### Dataset contents
 The PROMICE-2022 ice mask is an updated outline of the contiguous ice masses of the Greenland Ice Sheet. The dataset is derived from a mosaic of Sentinel-2 satellite images at 10 m resolution, compiled using the SentinelHub Cloud Processing API. The mosaic was generated using the most recent valid pixels from August 2022, ensuring high temporal and geometric accuracy. Manual editing and mapping was conducted at a scale of around 1:25,000, after which quality assessment was performed independently of the mapping operator, before finally being merged into one coherent dataset. The manual mapping process is further supported by data from the Danish Agency for Climate Data (KDS), including mosaics of Sentinel-2 and SPOT 6/7 imagery, as well as recent vector data from topographical mapping. Please see Luetzenburg et al. (In Prep) for full details on the processing workflow and quality assessment. The following files are included in this dataset:
 
+- ***00-README-PROMICE-2022-IceMask.md***: This dataset readme file
 - ***01-PROMICE-2022-IceMask-line.gpkg***: Outline of the Greenland Ice Sheet from August 2022, provided as line vector feature
 - ***02-PROMICE-2022-IceMask-polygon.gpkg***: Outline of the Greenland Ice Sheet from August 2022, provided as polygon vector feature
 - ***03-PROMICE-2022-Nunatak-line.gpkg***: Outlines of the nunataks within the Greenland Ice Sheet from August 2022, provided as line vector features
@@ -63,7 +64,6 @@ The PROMICE-2022 ice mask is an updated outline of the contiguous ice masses of 
 - ***10-PROMICE-2022-IceMask-raster-150m.gpkg*** Ice Mask of the Greenland Ice Sheet from August 2022 with the nunataks in its interior cut out, provided as raster file with a cell size of 150x150m using the same grid as BedMachine Greenland following Morlighem et al. 2017
 - ***11-PROMICE-2022-DOY-polygon.gpkg***: Polygon vector feature of the Sentinel-2 mosaic extent, annotated with the DOY (day of year) in 2022 on which the corresponding Sentinel-2 imagery was acquired and used for the delineation of the PROMICE-2022 ice mask
 - ***12-PROMICE-2022-DOY-line.gpkg***: The PROMICE-2022 Ice Mask and Nunatak lines attributed with the DOY from the PROMICE-2022 DOY polygons
-- ***README-PROMICE-2022-IceMask.md***: This dataset readme file
 
 ### Data format
 The ice mask is presented as a vector feature in GeoPackage format (.gpkg), with coordinates provided in the WGS NSIDC Sea Ice Polar Stereographic North (EPSG:3413) projected coordinate system.
