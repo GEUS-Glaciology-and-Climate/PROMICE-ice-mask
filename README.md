@@ -99,7 +99,7 @@ gdf = gpd.read_file(infile)
 If the dataset is presented or used to support results of any kind then we ask that a reference to the dataset and the dataset description be included in publications, along with any relevant publications from the data production team:
 
 - *Luetzenburg et al. (2025) PROMICE-2022 Ice Mask, https://doi.org/10.22008/FK2/O8CLRE, GEUS Dataverse, V2 .*
-- *Luetzenburg et al. (In Prep) PROMICE-2022 Ice Mask: A High-Resolution Outline of the Greenland Ice Sheet from August 2022. ESSD.*
+- *Luetzenburg et al. (Preprint) PROMICE-2022 Ice Mask: A High-Resolution Outline of the Greenland Ice Sheet from August 2022. Earth Syst. Sci. Data Discuss., https://doi.org/10.5194/essd-2025-415, in review.*
 
 And include the following statement in the acknowledgements:
 
