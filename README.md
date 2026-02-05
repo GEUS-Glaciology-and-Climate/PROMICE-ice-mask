@@ -49,7 +49,7 @@ A member of the PROMICE team will review your submission once a pull request is 
 
 ## Dataset readme
 ### Dataset contents
-The PROMICE-2022 ice mask is an updated outline of the contiguous ice masses of the Greenland Ice Sheet. The dataset is derived from a mosaic of Sentinel-2 satellite images at 10 m resolution, compiled using the SentinelHub Cloud Processing API. The mosaic was generated using the most recent valid pixels from August 2022, ensuring high temporal and geometric accuracy. Manual editing and mapping was conducted at a scale of around 1:25,000, after which quality assessment was performed independently of the mapping operator, before finally being merged into one coherent dataset. The manual mapping process is further supported by data from the Danish Agency for Climate Data (KDS), including mosaics of Sentinel-2 and SPOT 6/7 imagery, as well as recent vector data from topographical mapping. Please see Luetzenburg et al. (In Prep) for full details on the processing workflow and quality assessment. The following files are included in this dataset:
+The PROMICE-2022 ice mask is an updated outline of the contiguous ice masses of the Greenland Ice Sheet. The dataset is derived from a mosaic of Sentinel-2 satellite images at 10 m resolution, compiled using the SentinelHub Cloud Processing API. The mosaic was generated using the most recent valid pixels from August 2022, ensuring high temporal and geometric accuracy. Manual editing and mapping was conducted at a scale of around 1:25,000, after which quality assessment was performed independently of the mapping operator, before finally being merged into one coherent dataset. The manual mapping process is further supported by data from the Danish Agency for Climate Data (KDS), including mosaics of Sentinel-2 and SPOT 6/7 imagery, as well as recent vector data from topographical mapping. Please see Luetzenburg et al. 2026 for full details on the processing workflow and quality assessment. The following files are included in this dataset:
 
 - ***00-README-PROMICE-2022-IceMask.md***: This dataset readme file
 - ***01-PROMICE-2022-IceMask-line.gpkg***: Outline of the Greenland Ice Sheet from August 2022, provided as line vector feature
@@ -106,7 +106,7 @@ If the dataset is presented or used to support results of any kind then we ask t
 
 - *Luetzenburg G. et al. (2025) PROMICE-2022 Ice Mask. GEUS [https://doi.org/10.22008/FK2/O8CLRE](https://doi.org/10.22008/FK2/O8CLRE)*
 
-- *Luetzenburg G. et al. (2026) PROMICE-2022 Ice Mask: A high-resolution outline of the Greenland Ice Sheet from August 2022, Earth Syst. Sci. Data, 18, 411–427. https://doi.org/10.5194/essd-18-411-2026.*
+- *Luetzenburg G. et al. (2026) PROMICE-2022 Ice Mask: A high-resolution outline of the Greenland Ice Sheet from August 2022, Earth Syst. Sci. Data, 18, 411–427. [https://doi.org/10.5194/essd-18-411-2026](https://doi.org/10.5194/essd-18-411-2026).*
 
 And include the following statement in the acknowledgements:
 
