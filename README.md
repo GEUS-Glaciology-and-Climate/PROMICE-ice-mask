@@ -103,10 +103,13 @@ gdf = gpd.read_file(infile)
 The PROMICE-2022 Ice Mask is also available as a public dataset in Google Earth Engine, allowing direct visualisation and analysis without local downloads.
 
 In GEE, the ice mask is provided as a vector FeatureCollection in the Greenland Polar Stereographic projection (EPSG:3413) and can be accessed by its asset ID:
+```javascript
 projects/promice-data-ee/assets/ice_masks/PROMICE_2022_ICE_MASK
+```
 
-Example: visualising the ice mask in the Google Earth Engine Code Editor:
+Example code visualising the ice mask in the Google Earth Engine Code Editor:
 
+```javascript
 // Load the PROMICE 2022 Ice Mask
 var iceMask = ee.FeatureCollection(
   'projects/promice-data-ee/assets/ice_masks/PROMICE_2022_ICE_MASK'
@@ -117,7 +120,7 @@ Map.setCenter(-42, 72, 4); // longitude, latitude, zoom level
 
 // Add the ice mask layer
 Map.addLayer(iceMask, {color: 'blue'}, 'PROMICE 2022 Ice Mask');
-
+```
 
 ### Terms of use
 If the dataset is presented or used to support results of any kind then we ask that a reference to the dataset and the dataset description be included in publications, along with any relevant publications from the data production team:
