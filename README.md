@@ -97,7 +97,7 @@ The dataset can be opened in spatial mapping and visualisation applications such
 
 ```python
 import geopandas as gpd
-infile = "01-PROMICE-2022-IceMask-line.gpkg"
+infile = "01-PROMICE-2022-IceMask-line-v3.gpkg"
 gdf = gpd.read_file(infile)
 ```
 
@@ -106,7 +106,7 @@ If the dataset is presented or used to support results of any kind then we ask t
 
 - *Luetzenburg G. et al. (2025) PROMICE-2022 Ice Mask. GEUS [https://doi.org/10.22008/FK2/O8CLRE](https://doi.org/10.22008/FK2/O8CLRE)*
 
-- *Luetzenburg G. et al. PROMICE-2022 Ice Mask: A high-resolution outline of the Greenland Ice Sheet from August 2022, Earth Syst. Sci. Data Discuss. [preprint], [https://doi.org/10.5194/essd-2025-415](https://doi.org/10.5194/essd-2025-415), in review, 2025.*
+- *Luetzenburg G. et al. (2026) PROMICE-2022 Ice Mask: A high-resolution outline of the Greenland Ice Sheet from August 2022, Earth Syst. Sci. Data, 18, 411–427. https://doi.org/10.5194/essd-18-411-2026.*
 
 And include the following statement in the acknowledgements:
 
