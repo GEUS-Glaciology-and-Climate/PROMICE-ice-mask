@@ -100,9 +100,7 @@ import geopandas as gpd
 infile = "01-PROMICE-2022-IceMask-line-v3.gpkg"
 gdf = gpd.read_file(infile)
 ```
-The PROMICE-2022 Ice Mask is also available as a public dataset in [Google Earth Engine](https://earthengine.google.com/), allowing direct visualisation and analysis without local downloads.
-
-In GEE, the ice mask is provided as a vector FeatureCollection in the Greenland Polar Stereographic projection (EPSG:3413) and can be accessed by its asset ID:
+The PROMICE-2022 Ice Mask is also available as a public dataset in [Google Earth Engine](https://earthengine.google.com/), allowing direct visualisation and analysis without local downloads. In GEE, the ice mask is provided as a vector FeatureCollection in the Greenland Polar Stereographic projection (EPSG:3413) and can be accessed by its asset ID:
 
 ```javascript
 projects/promice-data-ee/assets/ice_masks/PROMICE_2022_ICE_MASK
